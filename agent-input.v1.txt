@@ -1,0 +1,14 @@
+I want to create a website with a Javascript application that should simulate tree growth and forest fires caused by lightning.
+On the left side of the website there should be a square with a black background and green pixels should simulate trees.
+On the right side there should be some parameters that could be changed via direct input or arrow up and down buttons, e.g. number of trees spawned per month, numbers of lightnings per month, and a number for how many days should pass per second, and a color chooser for the color of the trees, predefined as a light green, and a color chooser for the color of lightnings, predefined as white, and a color chooser for the color of fire, predefined as yellow.
+On top there should be a play button, a pause button, and a reset button,
+and a timer that shows the current time of the simulation.
+On the bottom of the simulation area there are counters for how many lightnings have hit in total, how many trees have spawned, and how many trees have burnt down.
+Once play is pressed it should always start today, and then progress as fast as defined by the parameter on the right.
+There should be a random number generator that decides how many trees should spawn on a given day, and also where in the simulation area the trees should spawn. The application needs to either keep track of every tree that has spawned in a two dimensional array, or be able to detect trees on the screen by identifying green pixels.
+Then there should be another random number generator that determines if there was a lightning that day, and if yes, where it hits in the simulation area.
+a lightning hitting should be symbolized by a white pixel in the simulation area for 1 simulated day. if there was a tree the tree is eliminated, and there is a fire for 1 day. the app has to track all positions where there is currently a fire.
+The next day all trees that are adjacent (any of the 8 adjacent pixels) to a fire will be burning, i.e. will be eliminated and there will be a fire, represented by a yellow pixels in the simulation area. This process will repeat each day with potentially more and more trees getting eliminated by fires.
+Lightning (white) will disappear after 1 day of simularion, and fire pixels (yellow) will disappear after 3 days simulation, and the app should no longer track them as active fires.
+New trees that spawn can not spawn at the same place where there is already a tree, a fire, or a lightning.
+Lastly, the user should be able to interfere by clicking anywhere in the simulation area with the mouse and cause a lightning there manually.
