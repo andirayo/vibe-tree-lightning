@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forest Fire Simulation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="controls-top">
+            <button id="play-btn">Play</button>
+            <button id="pause-btn">Pause</button>
+            <button id="reset-btn">Reset</button>
+        </div>
+        <div class="timer">
+            Current Date: <span id="date-display"></span>
+        </div>
+    </header>
+
+    <main>
+        <!-- Left Side: Simulation & Stats -->
+        <div class="simulation-container">
+            <canvas id="sim-canvas" width="300" height="300"></canvas>
+            
+            <div class="stats-panel">
+                <div class="stat-item">Total Lightnings: <span id="stat-lightnings">0</span></div>
+                <div class="stat-item">Trees Spawned: <span id="stat-spawned">0</span></div>
+                <div class="stat-item">Trees Burnt: <span id="stat-burnt">0</span></div>
+            </div>
+        </div>
+
+        <!-- Right Side: Parameters -->
+        <div class="parameters-panel">
+            <h2>Parameters</h2>
+            
+            <div class="control-group">
+                <label for="trees-rate">Trees per Month</label>
+                <input type="number" id="trees-rate" value="100" min="0">
+            </div>
+
+            <div class="control-group">
+                <label for="lightning-rate">Lightnings per Month</label>
+                <input type="number" id="lightning-rate" value="5" min="0">
+            </div>
+
+            <div class="control-group">
+                <label for="speed-rate">Speed (Days/Second)</label>
+                <input type="number" id="speed-rate" value="1" min="0.1" step="0.1">
+            </div>
+
+            <div class="color-pickers">
+                <div class="control-group">
+                    <label for="color-tree">Tree Color</label>
+                    <input type="color" id="color-tree" value="#90ee90">
+                </div>
+                <div class="control-group">
+                    <label for="color-lightning">Lightning Color</label>
+                    <input type="color" id="color-lightning" value="#ffffff">
+                </div>
+                <div class="control-group">
+                    <label for="color-fire">Fire Color</label>
+                    <input type="color" id="color-fire" value="#ffff00">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

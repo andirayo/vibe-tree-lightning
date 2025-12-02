@@ -1,0 +1,137 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    background-color: #2a2a2a;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #444;
+}
+
+.controls-top button {
+    padding: 8px 16px;
+    margin-right: 10px;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.controls-top button:hover {
+    background-color: #555;
+}
+
+.timer {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #aaa;
+}
+
+#date-display {
+    color: #fff;
+}
+
+main {
+    display: flex;
+    flex: 1;
+    padding: 20px;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.simulation-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+canvas {
+    background-color: #000;
+    border: 2px solid #444;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    cursor: crosshair;
+    /* Display the 300x300 canvas at a larger size if desired, or keep 1:1 */
+    width: 500px;
+    height: 500px;
+    image-rendering: pixelated; /* Keeps pixels sharp */
+}
+
+.stats-panel {
+    background-color: #2a2a2a;
+    padding: 15px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em;
+}
+
+.stat-item span {
+    font-weight: bold;
+    color: #4da6ff;
+}
+
+.parameters-panel {
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 6px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.parameters-panel h2 {
+    margin-top: 0;
+    font-size: 1.2em;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.control-group label {
+    font-size: 0.9em;
+    color: #ccc;
+}
+
+.control-group input[type="number"] {
+    padding: 6px;
+    background-color: #333;
+    border: 1px solid #555;
+    color: white;
+    border-radius: 4px;
+}
+
+.color-pickers {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    border-top: 1px solid #444;
+    padding-top: 15px;
+}
+
+input[type="color"] {
+    width: 100%;
+    height: 35px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
