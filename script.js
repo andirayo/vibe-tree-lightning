@@ -101,16 +101,16 @@ function simulateDay() {
   const currentYear = currentDate.getFullYear();
 
   if (
-    currentYear === 2045 &&
+    currentYear === 2050 &&
     !isSpeedModified &&
     parseFloat(els.params.speed.value) === 1000
   ) {
     els.params.speed.value = 100;
     if (els.autoSlowNotice) {
       els.autoSlowNotice.textContent =
-        "Further slow-down and more trees in year 2055";
+        "Further slow-down and more trees in year 2060";
     }
-  } else if (currentYear === 2055) {
+  } else if (currentYear === 2060) {
     let changed = false;
     if (!isSpeedModified && parseFloat(els.params.speed.value) === 100) {
       els.params.speed.value = 25;
