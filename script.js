@@ -12,6 +12,7 @@ let currentDate = new Date();
 let lastFrameTime = 0;
 let timeAccumulator = 0; // To track simulated days vs real time
 let isSpeedModified = false;
+let isTreesModified = false;
 
 // Grid: 1D array for performance (row-major: index = y * WIDTH + x)
 // Each cell stores: 0 (Empty), 1 (Tree), 2 (Fire), 3 (Lightning), 4 (Burnt/Ash - optional visual)
@@ -97,13 +98,32 @@ function simulateDay() {
   currentDate.setDate(currentDate.getDate() + 1);
   updateUI();
 
+  const currentYear = currentDate.getFullYear();
+
   if (
-    currentDate.getFullYear() === 2050 &&
+    currentYear === 2045 &&
     !isSpeedModified &&
     parseFloat(els.params.speed.value) === 1000
   ) {
     els.params.speed.value = 100;
-    if (els.autoSlowNotice) els.autoSlowNotice.style.display = "none";
+    if (els.autoSlowNotice) {
+      els.autoSlowNotice.textContent =
+        "Further slow-down and more trees in year 2055";
+    }
+  } else if (currentYear === 2055) {
+    let changed = false;
+    if (!isSpeedModified && parseFloat(els.params.speed.value) === 100) {
+      els.params.speed.value = 25;
+      changed = true;
+    }
+    if (!isTreesModified && parseInt(els.params.treesRate.value) === 100) {
+      els.params.treesRate.value = 1000;
+      changed = true;
+    }
+
+    if (changed && els.autoSlowNotice) {
+      els.autoSlowNotice.style.display = "none";
+    }
   }
 
   // Spawning
@@ -333,6 +353,10 @@ els.btnReset.addEventListener("click", () => {
 els.params.speed.addEventListener("input", () => {
   isSpeedModified = true;
   if (els.autoSlowNotice) els.autoSlowNotice.style.display = "none";
+});
+
+els.params.treesRate.addEventListener("input", () => {
+  isTreesModified = true;
 });
 
 // Manual Lightning
