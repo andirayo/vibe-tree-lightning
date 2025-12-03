@@ -122,7 +122,7 @@ function simulateDay() {
     }
 
     if (changed && els.autoSlowNotice) {
-      els.autoSlowNotice.style.display = "none";
+      els.autoSlowNotice.style.visibility = "hidden";
     }
   }
 
@@ -352,7 +352,7 @@ els.btnReset.addEventListener("click", () => {
 
 els.params.speed.addEventListener("input", () => {
   isSpeedModified = true;
-  if (els.autoSlowNotice) els.autoSlowNotice.style.display = "none";
+  if (els.autoSlowNotice) els.autoSlowNotice.style.visibility = "hidden";
 });
 
 els.params.treesRate.addEventListener("input", () => {
