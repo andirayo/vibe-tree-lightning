@@ -35,6 +35,7 @@ let stats = {
 // --- DOM Elements ---
 const els = {
   date: document.getElementById("date-display"),
+  autoSlowNotice: document.getElementById("auto-slow-notice"),
   btnPlay: document.getElementById("play-btn"),
   btnPause: document.getElementById("pause-btn"),
   btnReset: document.getElementById("reset-btn"),
@@ -50,6 +51,7 @@ const els = {
     colorTree: document.getElementById("color-tree"),
     colorLightning: document.getElementById("color-lightning"),
     colorFire: document.getElementById("color-fire"),
+    colorSpark: document.getElementById("color-spark"),
   },
 };
 
@@ -101,6 +103,7 @@ function simulateDay() {
     parseFloat(els.params.speed.value) === 1000
   ) {
     els.params.speed.value = 100;
+    if (els.autoSlowNotice) els.autoSlowNotice.style.display = "none";
   }
 
   // Spawning
@@ -246,6 +249,7 @@ function render() {
   const cTree = hexToRgb(els.params.colorTree.value);
   const cFire = hexToRgb(els.params.colorFire.value);
   const cLightning = hexToRgb(els.params.colorLightning.value);
+  const cSpark = hexToRgb(els.params.colorSpark.value);
 
   for (let i = 0; i < TOTAL_PIXELS; i++) {
     const type = grid[i];
@@ -263,10 +267,18 @@ function render() {
       data[offset + 2] = cTree.b;
       data[offset + 3] = 255;
     } else if (type === FIRE) {
-      data[offset] = cFire.r;
-      data[offset + 1] = cFire.g;
-      data[offset + 2] = cFire.b;
-      data[offset + 3] = 255;
+      // 14 days total: 14,13,12 (3 days) = Spark; 11..1 (11 days) = Fire
+      if (stateTimers[i] >= 12) {
+        data[offset] = cSpark.r;
+        data[offset + 1] = cSpark.g;
+        data[offset + 2] = cSpark.b;
+        data[offset + 3] = 255;
+      } else {
+        data[offset] = cFire.r;
+        data[offset + 1] = cFire.g;
+        data[offset + 2] = cFire.b;
+        data[offset + 3] = 255;
+      }
     } else if (type === LIGHTNING) {
       data[offset] = cLightning.r;
       data[offset + 1] = cLightning.g;
@@ -316,6 +328,7 @@ els.btnReset.addEventListener("click", () => {
 
 els.params.speed.addEventListener("input", () => {
   isSpeedModified = true;
+  if (els.autoSlowNotice) els.autoSlowNotice.style.display = "none";
 });
 
 // Manual Lightning
