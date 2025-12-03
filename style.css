@@ -12,10 +12,18 @@ body {
 header {
     background-color: #2a2a2a;
     padding: 15px 20px;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #444;
+    position: relative;
+}
+
+header h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
 }
 
 .controls-top button {
@@ -39,13 +47,16 @@ header {
     color: #aaa;
     text-align: right;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
 }
 
 #date-display {
     color: #fff;
     display: inline-block;
-    width: 100px;
+    width: 110px;
     text-align: left;
+    margin-left: 8px;
 }
 
 main {
