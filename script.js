@@ -112,7 +112,11 @@ function simulateDay() {
     }
   } else if (currentYear === 2060) {
     let changed = false;
-    if (!isSpeedModified && parseFloat(els.params.speed.value) === 100) {
+    if (
+      !isSpeedModified &&
+      !isTreesModified &&
+      parseFloat(els.params.speed.value) === 100
+    ) {
       els.params.speed.value = 25;
       changed = true;
     }
@@ -326,7 +330,10 @@ function hexToRgb(hex) {
 }
 
 function updateUI() {
-  els.date.textContent = currentDate.toLocaleDateString();
+  const y = currentDate.getFullYear();
+  const m = String(currentDate.getMonth() + 1).padStart(2, "0");
+  const d = String(currentDate.getDate()).padStart(2, "0");
+  els.date.textContent = `${y}-${m}-${d}`;
 }
 
 function updateStats() {
