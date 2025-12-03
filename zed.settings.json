@@ -1,0 +1,33 @@
+{
+  "base_keymap": "VSCode",
+  "icon_theme": "Zed (Default)",
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "Ayu Dark"
+  },
+  "agent": {
+    "default_model": {
+      "provider": "google",
+      "model": "gemini-3-pro-preview"
+    }
+  },
+  "language_models": {
+    "google": {
+      "available_models": [
+        {
+          "name": "gemini-3-pro-preview",
+          "display_name": "Gemini 3 Pro (Preview)",
+          "max_tokens": 1000000
+        },
+        {
+          "name": "gemini-2.5-pro",
+          "display_name": "Gemini 2.5 Pro (Stable)",
+          "max_tokens": 2000000
+        }
+      ]
+    }
+  }
+}

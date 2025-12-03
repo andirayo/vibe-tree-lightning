@@ -127,7 +127,7 @@ function simulateDay() {
     if (type === LIGHTNING) {
       // Check magic number for "Hit Tree"
       if (stateTimers[i] === 100) {
-        changes.push({ index: i, type: FIRE, timer: 14 });
+        changes.push({ index: i, type: FIRE, timer: 15 });
       } else {
         changes.push({ index: i, type: EMPTY, timer: 0 });
       }
@@ -155,7 +155,7 @@ function simulateDay() {
 
               // Prevent duplicate entries in changes?
               // Array push is fast, we can handle duplicates or just let last write win during apply.
-              changes.push({ index: nIdx, type: FIRE, timer: 14 });
+              changes.push({ index: nIdx, type: FIRE, timer: 15 });
             }
           }
         }
@@ -208,6 +208,10 @@ function spawnTree() {
     if (grid[idx] === EMPTY) {
       grid[idx] = TREE;
       stats.spawned++;
+      break;
+    } else if (grid[idx] === FIRE) {
+      // Start a new fire in place of that tree
+      stateTimers[idx] = 15;
       break;
     }
   }
@@ -267,8 +271,8 @@ function render() {
       data[offset + 2] = cTree.b;
       data[offset + 3] = 255;
     } else if (type === FIRE) {
-      // 14 days total: 14,13,12 (3 days) = Spark; 11..1 (11 days) = Fire
-      if (stateTimers[i] >= 12) {
+      // 15 days total: 15..10 (6 days) = Spark; 9..1 (9 days) = Fire
+      if (stateTimers[i] >= 10) {
         data[offset] = cSpark.r;
         data[offset + 1] = cSpark.g;
         data[offset + 2] = cSpark.b;
