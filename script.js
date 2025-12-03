@@ -11,6 +11,7 @@ let isRunning = false;
 let currentDate = new Date();
 let lastFrameTime = 0;
 let timeAccumulator = 0; // To track simulated days vs real time
+let isSpeedModified = false;
 
 // Grid: 1D array for performance (row-major: index = y * WIDTH + x)
 // Each cell stores: 0 (Empty), 1 (Tree), 2 (Fire), 3 (Lightning), 4 (Burnt/Ash - optional visual)
@@ -93,6 +94,14 @@ function loop(timestamp) {
 function simulateDay() {
   currentDate.setDate(currentDate.getDate() + 1);
   updateUI();
+
+  if (
+    currentDate.getFullYear() === 2050 &&
+    !isSpeedModified &&
+    parseFloat(els.params.speed.value) === 1000
+  ) {
+    els.params.speed.value = 100;
+  }
 
   // Spawning
   const treesPerMonth = parseInt(els.params.treesRate.value) || 0;
@@ -303,6 +312,10 @@ els.btnPause.addEventListener("click", () => (isRunning = false));
 els.btnReset.addEventListener("click", () => {
   isRunning = false;
   init();
+});
+
+els.params.speed.addEventListener("input", () => {
+  isSpeedModified = true;
 });
 
 // Manual Lightning
